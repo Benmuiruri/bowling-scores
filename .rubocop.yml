@@ -1,11 +1,19 @@
-require:
-  - rubocop-rspec
+require: rubocop-rspec
 
 AllCops:
   Exclude:
     - 'spec/fixtures/**/*'
+  NewCops: enable
 
 Style/BlockComments:
   Exclude:
     - 'spec/spec_helper.rb'
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
     
+RSpec/RepeatedExampleGroupBody:
+  Enabled: false
