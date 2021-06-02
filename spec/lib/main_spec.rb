@@ -2,6 +2,8 @@ require 'spec_helper'
 require 'main'
 
 RSpec.describe Main do
+  let(:perfect) { file_fixture('perfect.txt') }
+
   context 'when input file is valid' do
     context 'with more than two players' do
       xit 'prints the game scoreboard to stdout' do

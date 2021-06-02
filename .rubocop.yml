@@ -13,7 +13,8 @@ Style/FrozenStringLiteralComment:
   Enabled: false
 
 Metrics/BlockLength:
-  Enabled: false
+  Exclude: 
+    - spec/**/*
     
 RSpec/RepeatedExampleGroupBody:
   Enabled: false
