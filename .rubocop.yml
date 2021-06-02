@@ -14,6 +14,8 @@ Style/FrozenStringLiteralComment:
 
 Metrics/BlockLength:
   Enabled: false
+  Exclude: 
+    - spec/**/*
     
 RSpec/RepeatedExampleGroupBody:
   Enabled: false
