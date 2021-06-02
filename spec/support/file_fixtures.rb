@@ -6,7 +6,7 @@ module FileFixtures
       path
     else
       msg = "the directory '%s' does not contain a file named '%s'"
-      raise ArgumentError, msg % ["spec/fixtures", fixture_name]
+      raise ArgumentError, format(msg, 'spec/fixtures', fixture_name)
     end
   end
 end
