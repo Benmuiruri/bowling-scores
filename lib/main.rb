@@ -14,7 +14,7 @@ class Main
   end
 
   def play_game(file)
-    FileReader.file_exists?(file)
+    FileReader.validate_file(file)
     players = FileReader.get_players(file)
     frames = FileReader.get_frames(file)
   end

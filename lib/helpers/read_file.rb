@@ -1,5 +1,5 @@
 module FileReader
-  def self.file_exists?(file)
+  def self.validate_file(file)
     if File.file?(file)
       puts 'File with bowling scores exists, reading file to validate score format...'
       sleep 0.5
