@@ -1,17 +1,22 @@
+require_relative './helpers/read_file'
+
 class Main
-  def display
-    persons = []
-    ids = []
-    File.read('data.txt').each_line do |line|
-      temp = line.chomp.split("\t")
-      persons << temp[0]
-      ids << temp[1]
-    end
-    # p persons
-    # p ids
-    p persons.uniq
+  include FileReader
+
+  def main
+    file = get_file
+    play_game(file)
+  end
+
+  def get_file
+    puts 'Please enter the name of your bowling scores file:'
+    file = gets.chomp
+  end
+
+  def play_game(file)
+    FileReader.file_exists?(file)
+    players = FileReader.get_players(file)
+    frames = FileReader.get_frames(file)
+    puts frames 
   end
 end
-
-game = Main.new
-game.display

@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'main'
+require 'pry'
 
 RSpec.describe Main do
   let(:perfect) { file_fixture('perfect.txt') }
