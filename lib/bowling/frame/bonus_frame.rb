@@ -4,7 +4,10 @@ module Bowling
   class BonusFrame < Frame
     def bowl(pins)
       remaining = remaining_pins - pins
-      raise ArgumentError, 'Invalid number of pins'.colorize(:red) if (remaining.negative? && extra_bowls.zero?) || pins > MAX_PINS
+      if (remaining.negative? && extra_bowls.zero?) || pins > MAX_PINS
+        raise ArgumentError,
+              'Invalid number of pins'.colorize(:red)
+      end
 
       @remaining_pins = remaining unless bonus?
       bowls << pins

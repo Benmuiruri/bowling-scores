@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require_relative './helpers/read_file'
 require_relative 'bowling/game'
 

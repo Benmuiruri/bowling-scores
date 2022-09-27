@@ -3,17 +3,17 @@ require 'colorize'
 module FileReader
   def self.validate_file(file)
     if File.file?(file)
-      puts "File with bowling scores exists, reading file to validate score format...".colorize(:light_blue)
+      puts 'File with bowling scores exists, reading file to validate score format...'.colorize(:light_blue)
       sleep 0.5
       validate_score_format(file)
     else
-      puts "File not found. Please check your file path.".colorize(:red)
+      puts 'File not found. Please check your file path.'.colorize(:red)
       exit
     end
   end
 
   def self.validate_score_format(file)
-    puts "Validating score format...".colorize(:light_green)
+    puts 'Validating score format...'.colorize(:light_green)
     sleep 0.5
     File.read(file).each_line do |line|
       if line.match(/(\w+)\t(\w+)/)

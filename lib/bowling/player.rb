@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 require 'colorize'
 
 module Bowling
@@ -70,7 +69,7 @@ module Bowling
       frames.each do |frame|
         output << frame.to_s.ljust(10)
       end
-      output << '|'.ljust(6) << "Score = #{score.to_s}".colorize(:light_green)
+      output << '|'.ljust(6) << "Score = #{score}".colorize(:light_green)
     end
 
     def complete_playing?
