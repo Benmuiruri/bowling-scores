@@ -1,7 +1,9 @@
 require_relative './helpers/read_file'
+require_relative 'bowling/game'
 
 class Main
   include FileReader
+  include Bowling
 
   def main
     file = get_file
