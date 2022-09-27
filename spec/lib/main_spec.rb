@@ -1,12 +1,13 @@
 require 'spec_helper'
-require 'pry'
+require_relative '../../lib/bowling/game'
 
-RSpec.describe "Main" do
+RSpec.describe 'Main' do
   let(:perfect) { FileFixtures.file_fixture('perfect.txt') }
   let(:empty) { FileFixtures.file_fixture('empty.txt') }
   let(:invalid_score) { FileFixtures.file_fixture('invalid-score.txt') }
   let(:negative) { FileFixtures.file_fixture('negative.txt') }
   let(:invalid_format) { FileFixtures.file_fixture('free-text.txt') }
+  let(:mising_file) { FileReader.validate_file('not_a_file.txt') }
 
   context 'when the file exists' do
     context 'when the file has correct data' do
@@ -45,56 +46,23 @@ RSpec.describe "Main" do
       end
 
       context 'with incorrect score format' do
-        it 'expect file score format to be invalid' do
-          expect(FileReader.validate_file(invalid_format)).not_to match(/(\w+)\t(\w+)/)
+        it 'raises an argument error' do
+          expect { FileReader.validate_file(invalid_format) }.to raise_error(ArgumentError)
         end
       end
 
       context 'with invalid score value' do
-        it 'expect score to be invalid' do
-          scores = FileReader.validate_file(invalid_score).chomp.split("\t")
-          expect(scores[1]).not_to match(/^([0-9]|10)$|F/)
+        it 'raises an argument error ' do
+          expect { FileReader.validate_file(invalid_score) }
+            .to raise_error(ArgumentError)
         end
       end
     end
-  end
 
-  context 'when the file does not exist' do
-    it 'expect file to not exist' do
-      expect(FileReader.validate_file('not_a_file.txt')).to eq('File not found. Please check your file path.')
-    end
-  end
-
-  context 'when input file is valid' do
-    context 'with more than two players' do
-      xit 'prints the game scoreboard to stdout' do
-      end
-    end
-
-    context 'with strikes in all throwings' do
-      xit 'prints a perfect game scoreboard' do
-      end
-    end
-
-    context 'with fouls in all throwings' do
-      xit 'prints the game scoreboard to stdout' do
-      end
-    end
-  end
-
-  context 'when input file is invalid' do
-    context 'with invalid characters present' do
-      xit 'raises the corresponding error message' do
-      end
-    end
-
-    context 'with invalid score' do
-      xit 'raises the corresponding error message' do
-      end
-    end
-
-    context 'with invalid number of throwings' do
-      xit 'raises the corresponding error message' do
+    context 'when the file does not exist' do
+      it "Raises 'File not found' error" do
+        expect { FileReader.validate_file(mising_file) }
+          .to raise_error(ArgumentError)
       end
     end
   end

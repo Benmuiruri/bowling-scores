@@ -8,7 +8,7 @@ module FileReader
       validate_score_format(file)
     else
       puts 'File not found. Please check your file path.'.colorize(:red)
-      exit
+      raise ArgumentError, 'File not found. Please check your file path'
     end
   end
 
@@ -20,7 +20,7 @@ module FileReader
         validate_score(line)
       else
         puts "#{line} is an invalid score format, please check your file and try again.".colorize(:red)
-        exit
+        raise ArgumentError, 'Presence of invalid score format, please check your score format and try again.'
       end
     end
   end
@@ -29,7 +29,7 @@ module FileReader
     scores = line.chomp.split("\t")
     unless scores[1].match(/^([0-9]|10)$|F/)
       puts "#{scores[1]} is an invalid score. Please check the scores in the file.".colorize(:red)
-      exit
+      raise ArgumentError, 'Presence of invalid score, please check your scores and try again.'
     end
     scores[1].replace '0' if scores[1] == 'F'
   end
