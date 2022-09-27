@@ -3,6 +3,7 @@ require_relative '../../lib/bowling/game'
 
 RSpec.describe 'Main' do
   let(:perfect) { FileFixtures.file_fixture('perfect.txt') }
+  let(:mising_file) { FileReader.validate_file('not_a_file.txt') }
 
   context 'when the file has correct data' do
     context 'with valid score format' do
@@ -37,21 +38,21 @@ RSpec.describe 'Main' do
   context 'when the file has incorrect data' do
     context 'when the file is empty' do
       it 'expect file to be empty' do
-        let(:empty) { FileFixtures.file_fixture('empty.txt') }
+        empty = FileFixtures.file_fixture('empty.txt')
         expect(File.zero?(empty)).to be true
       end
     end
 
     context 'with incorrect score format' do
       it 'raises an argument error' do
-        let(:invalid_format) { FileFixtures.file_fixture('free-text.txt') }
+        invalid_format = FileFixtures.file_fixture('free-text.txt')
         expect { FileReader.validate_file(invalid_format) }.to raise_error(ArgumentError)
       end
     end
 
     context 'with invalid score value' do
       it 'raises an argument error ' do
-        let(:invalid_score) { FileFixtures.file_fixture('invalid-score.txt') }
+        invalid_score = FileFixtures.file_fixture('invalid-score.txt')
         expect { FileReader.validate_file(invalid_score) }
           .to raise_error(ArgumentError)
       end
@@ -60,7 +61,6 @@ RSpec.describe 'Main' do
 
   context 'when the file does not exist' do
     it "Raises 'File not found' error" do
-      let(:mising_file) { FileReader.validate_file('not_a_file.txt') }
       expect { FileReader.validate_file(mising_file) }
         .to raise_error(ArgumentError)
     end
