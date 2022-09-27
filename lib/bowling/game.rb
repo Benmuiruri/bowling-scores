@@ -34,13 +34,13 @@ module Bowling
       players[player_index]
     end
 
-    def roll(pins)
+    def play(pins)
       scoreboard if game_over?
       current_player.bowl(pins)
       next_player
     end
 
-    def print_player_name(player)
+    def print_player(player)
       puts "\n #{player.name}"
       board = player.scoreboard
       puts board
@@ -54,7 +54,9 @@ module Bowling
         frame_count << (i + 1).to_s.ljust(10)
       end
       puts frame_count
-      players.each { |player| print_player_name(player) }
+      players.each { |player| print_player(player) }
+      puts "\n Game Over! Thanks for playing"
+      exit
     end
 
     def game_over?

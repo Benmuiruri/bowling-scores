@@ -24,9 +24,12 @@ class Main
     bowling = Bowling::Game.new(players)
 
     frames.each do |frame|
-      bowling.rolls(frame.to_i)
+      bowling.play(frame.to_i)
     end
 
     bowling.scoreboard
   end
 end
+
+game = Main.new
+game.main

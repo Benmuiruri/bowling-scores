@@ -69,7 +69,7 @@ module Bowling
       frames.each do |frame|
         output << frame.to_s.ljust(10)
       end
-      output << '|'.ljust(6) << score.to_s
+      output << '|'.ljust(6) << "Score = #{score.to_s}"
     end
 
     def complete_playing?

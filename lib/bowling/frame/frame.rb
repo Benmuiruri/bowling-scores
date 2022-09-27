@@ -54,9 +54,9 @@ module Bowling
       if strike?
         STRIKE
       elsif spare?
-        "#{first_bowl}#{SPARE}"
+        "#{first_bowl} #{SPARE}"
       else
-        bowls.join('|').gsub('0', GUTTER)
+        bowls.join(' | ').gsub('0', GUTTER)
       end
     end
   end

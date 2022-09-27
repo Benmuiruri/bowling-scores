@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Bowling
   class BonusFrame < Frame
     def bowl(pins)
