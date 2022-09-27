@@ -1,5 +1,6 @@
+require 'pathname'
 module FileFixtures
-  def file_fixture(fixture_name)
+  def self.file_fixture(fixture_name)
     path = Pathname.new(File.join('spec/fixtures/negative', fixture_name))
     path = Pathname.new(File.join('spec/fixtures/positive', fixture_name)) unless path.exist?
     if path.exist?
@@ -10,3 +11,5 @@ module FileFixtures
     end
   end
 end
+
+FileFixtures.file_fixture('perfect.txt')

@@ -4,6 +4,10 @@ require 'main'
 RSpec.describe Main do
   let(:perfect) { file_fixture('perfect.txt') }
 
+  before do
+    @game = Bowling::Game.new 
+  end
+
   context 'when input file is valid' do
     context 'with more than two players' do
       xit 'prints the game scoreboard to stdout' do
