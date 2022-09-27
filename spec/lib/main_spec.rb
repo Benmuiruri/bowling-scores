@@ -16,39 +16,45 @@ RSpec.describe Main do
           expect(FileReader.validate_file(perfect)).to match(/(\w+)\t(\w+)/)
         end
       end
+
       context 'when validating score' do
         it 'expect score to be valid' do
           scores = FileReader.validate_file(perfect).chomp.split("\t")
           expect(scores[1]).to match(/^([0-9]|10)$|F/)
         end
       end
+
       context 'when getting players' do
         it 'expect players to be unique' do
           players = FileReader.get_players(perfect)
           expect(players.uniq).to eq(players)
         end
       end
+
       context 'when getting frames' do
         it 'expect frames to be an array' do
           expect(FileReader.get_frames(perfect)).to be_an(Array)
         end
       end
     end
+
     context 'when the file has incorrect data' do
       context 'when the file is empty' do
         it 'expect file to be empty' do
           expect(File.zero?(empty)).to be true
         end
       end
+
       context 'with incorrect score format' do
         it 'expect file score format to be invalid' do
-          expect(FileReader.validate_file(invalid_format)).to_not match(/(\w+)\t(\w+)/)
+          expect(FileReader.validate_file(invalid_format)).not_to match(/(\w+)\t(\w+)/)
         end
       end
+
       context 'with invalid score value' do
         it 'expect score to be invalid' do
           scores = FileReader.validate_file(invalid_score).chomp.split("\t")
-          expect(scores[1]).to_not match(/^([0-9]|10)$|F/)
+          expect(scores[1]).not_to match(/^([0-9]|10)$|F/)
         end
       end
     end
