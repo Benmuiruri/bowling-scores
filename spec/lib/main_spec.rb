@@ -17,6 +17,12 @@ RSpec.describe Main do
         expect(scores[1]).to match(/^([0-9]|10)$|F/)
       end
     end
+    context 'when getting players' do
+      it 'expect players to be unique' do
+        players = FileReader.get_players(perfect)
+        expect(players.uniq).to eq(players)
+      end
+    end
   end
 
   context 'when input file is valid' do
