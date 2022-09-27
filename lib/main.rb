@@ -1,18 +1,19 @@
 require_relative './helpers/read_file'
 require_relative 'bowling/game'
 
+# Main class initializes the game by reading data from file and simulating the game and displaying score
 class Main
   include FileReader
   include Bowling
 
   def main
-    file = get_file
+    file = input_file
     play_game(file)
   end
 
-  def get_file
+  def input_file
     puts 'Please enter the name of your bowling scores file:'
-    file = gets.chomp
+    gets.chomp
   end
 
   def play_game(file)

@@ -1,11 +1,14 @@
+# frozen_string_literal: true
+
 require 'colorize'
 
 module Bowling
+  # Frame class keeps track of knocked down pins
   class Frame
     MAX_PINS = 10
-    STRIKE = 'X'.freeze
-    SPARE = '/'.freeze
-    GUTTER = '-'.freeze
+    STRIKE = 'X'
+    SPARE = '/'
+    GUTTER = '-'
 
     attr_accessor :bowls, :remaining_pins
 

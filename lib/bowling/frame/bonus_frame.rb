@@ -1,4 +1,5 @@
 module Bowling
+  # BonusFrame class handles the final bonus frame
   class BonusFrame < Frame
     def bowl(pins)
       remaining = remaining_pins - pins
@@ -35,10 +36,8 @@ module Bowling
       frame = Frame.new
       until remaining_bowls.empty?
         frame.bowl(remaining_bowls.shift)
-        if frame.complete?
-          bowl_string << frame.to_s
-          frame = Frame.new
-        end
+        bowl_string << frame.to_s if frame.complete?
+        frame = Frame.new
       end
       bowl_string << frame.to_s unless frame.complete?
       bowl_string

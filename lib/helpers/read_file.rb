@@ -1,5 +1,6 @@
 require 'colorize'
 
+# Module to read, validate data from file and get players and their scores
 module FileReader
   def self.validate_file(file)
     if File.file?(file)

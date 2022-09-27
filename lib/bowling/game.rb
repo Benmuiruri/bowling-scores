@@ -1,9 +1,12 @@
+# frozen_string_literal: true
+
 require 'colorize'
 require_relative 'player'
 require_relative 'frame/frame'
 require_relative 'frame/bonus_frame'
 
 module Bowling
+  # Game class controls swtiching player turns and the scoreboard
   class Game
     attr_reader :players, :player_index
 
@@ -47,17 +50,21 @@ module Bowling
 
     def scoreboard
       puts "\n These are the scores for the game".colorize(:light_green)
+      display_frames
+      players.each { |player| print_player(player) }
+      puts "\n Thank you for playing 👍\n".colorize(:green)
+      sleep 0.5
+      puts 'Goodbye, See you next Time 😀'.colorize(:magenta)
+      exit
+    end
+
+    def display_frames
       frames = players.first.frames.count
       frame_count = "\n Frame".ljust(12)
       frames.times do |i|
         frame_count << (i + 1).to_s.ljust(10)
       end
       puts frame_count
-      players.each { |player| print_player(player) }
-      puts "\n Thank you for playing 👍\n".colorize(:green)
-      sleep 0.5
-      puts 'Goodbye, See you next Time 😀'.colorize(:magenta)
-      exit
     end
 
     def game_over?

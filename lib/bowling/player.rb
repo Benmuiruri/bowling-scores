@@ -1,6 +1,7 @@
 require 'colorize'
 
 module Bowling
+  # Player class keeps tradk of the frames played by each player and player's scores
   class Player
     MAX_FRAMES = 10
 
