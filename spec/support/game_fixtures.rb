@@ -1,5 +1,3 @@
-module GameFixtures
-  def play(bowls)
-    bowls.each { |bowl| @game.play bowl }
-  end
+def play(bowls)
+  bowls.each { |bowl| @game.play bowl }
 end
