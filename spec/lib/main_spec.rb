@@ -3,10 +3,20 @@ require 'main'
 require 'pry'
 
 RSpec.describe Main do
-  let(:perfect) { file_fixture('perfect.txt') }
+  let(:perfect) { FileFixtures.file_fixture('perfect.txt') }
 
-  before do
-    @game = Bowling::Game.new 
+  context 'when the file exists' do
+    context 'when validating score format' do
+      it 'expect file content to be valid' do
+        expect(FileReader.file_exists?(perfect)).to match(/(\w+)\t(\w+)/)
+      end
+    end
+    context 'when validating score' do
+      it 'expect score to be valid' do
+        scores = FileReader.file_exists?(perfect).chomp.split("\t")
+        expect(scores[1]).to match(/^([0-9]|10)$|F/)
+      end
+    end
   end
 
   context 'when input file is valid' do

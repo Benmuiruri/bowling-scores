@@ -17,6 +17,5 @@ class Main
     FileReader.file_exists?(file)
     players = FileReader.get_players(file)
     frames = FileReader.get_frames(file)
-    puts frames 
   end
 end

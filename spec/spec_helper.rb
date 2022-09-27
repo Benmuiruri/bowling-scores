@@ -15,6 +15,7 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
 require_relative 'support/file_fixtures'
+require_relative '../lib/helpers/read_file'
 
 RSpec.configure do |config|
   config.include FileFixtures
