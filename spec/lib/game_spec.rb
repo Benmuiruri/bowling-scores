@@ -4,6 +4,7 @@ require_relative '../../lib/bowling/game'
 RSpec.describe 'Bowling::Game' do
   let(:perfect) { FileFixtures.file_fixture('perfect.txt') }
   let(:multiplayer) { FileFixtures.file_fixture('scores.txt') }
+
   before do
     @players = FileReader.get_players(perfect)
     @game = Bowling::Game.new(@players)
@@ -22,21 +23,23 @@ RSpec.describe 'Bowling::Game' do
       it 'prints a score of 0 to stdout' do
         @bowls = [0, 0]
         10.times { play @bowls }
-        expect(@player.score).to eql 0
+        expect(@player.score).to be 0
       end
     end
+
     context 'with player getting a strike' do
       before do
         @bowls = [10, 10, 4, 2]
         play @bowls
         @frame = @player.frames.first
       end
+
       it 'records a strike when 10 pins fall in one bowl' do
         expect(@frame.strike?).to be true
       end
 
       it 'adds a bonus to the score when player bowls a strike' do
-        expect(@player.score).to eql 46
+        expect(@player.score).to be 46
       end
     end
 
@@ -46,35 +49,36 @@ RSpec.describe 'Bowling::Game' do
         play @bowls
         @frame = @player.frames.first
       end
+
       it 'records a spare when 10 pins fall in two bowls' do
         expect(@frame.spare?).to be true
       end
 
       it 'adds a bonus to the score when player bowls a spare' do
-        expect(@player.score).to eql 24
+        expect(@player.score).to be 24
       end
     end
 
     context 'when player reaches the 10th frame' do
       context 'final bonus frame' do
-        it 'should have a maximum of three bowls if all strikes' do
+        it 'has a maximum of three bowls if all strikes' do
           12.times { play [10] }
-          expect(@player.frames.last.bowls.size).to eql 3
-          expect(@player.frames.last.extra_bowls).to eql 2
+          expect(@player.frames.last.bowls.size).to be 3
+          expect(@player.frames.last.extra_bowls).to be 2
         end
 
-        it 'should have 3 bowls if a spare is scored' do
+        it 'has 3 bowls if a spare is scored' do
           9.times { play [10] }
           play [5, 5, 4]
-          expect(@player.frames.last.bowls.size).to eql 3
-          expect(@player.frames.last.extra_bowls).to eql 1
+          expect(@player.frames.last.bowls.size).to be 3
+          expect(@player.frames.last.extra_bowls).to be 1
         end
 
-        it 'should not offer extra bowls without a bonus bowl' do
+        it 'does not offer extra bowls without a bonus bowl' do
           9.times { play [0, 0] }
           play [5, 4]
           expect(@game.game_over?).to be true
-          expect(@player.frames.last.extra_bowls).to eql 0
+          expect(@player.frames.last.extra_bowls).to be 0
         end
       end
     end
@@ -85,14 +89,15 @@ RSpec.describe 'Bowling::Game' do
       @players = FileReader.get_players(multiplayer)
       @game = Bowling::Game.new(@players)
     end
+
     context 'when game has two players' do
-      it 'should have two players' do
-        expect(@game.players.size).to eql 2
+      it 'has two players' do
+        expect(@game.players.size).to be 2
       end
     end
 
     context 'when two players are playing' do
-      it 'should switch between the players' do
+      it 'switches between the players' do
         player_1_name = @players[0]
         player_2_name = @players[1]
         expect(@game.current_player.name).to eql player_1_name
@@ -100,7 +105,7 @@ RSpec.describe 'Bowling::Game' do
         expect(@game.current_player.name).to eql player_2_name
       end
 
-      it "should keep track of different player's scores" do
+      it "keeps track of different player's scores" do
         player_1 = @game.players.first
         player_2 = @game.players.last
 
