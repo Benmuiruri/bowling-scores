@@ -17,5 +17,8 @@ class Main
     FileReader.validate_file(file)
     players = FileReader.get_players(file)
     frames = FileReader.get_frames(file)
+    #initiate game from here with players and frames
+    #For each frame, we boll the number of pins
+    #then print the scoreboard
   end
 end

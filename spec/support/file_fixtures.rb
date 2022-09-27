@@ -11,5 +11,3 @@ module FileFixtures
     end
   end
 end
-
-FileFixtures.file_fixture('perfect.txt')
