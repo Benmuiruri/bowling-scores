@@ -1,8 +1,7 @@
 require 'spec_helper'
-require 'main'
 require 'pry'
 
-RSpec.describe Main do
+RSpec.describe "Main" do
   let(:perfect) { FileFixtures.file_fixture('perfect.txt') }
   let(:empty) { FileFixtures.file_fixture('empty.txt') }
   let(:invalid_score) { FileFixtures.file_fixture('invalid-score.txt') }
