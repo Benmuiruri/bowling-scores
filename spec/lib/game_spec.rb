@@ -98,8 +98,8 @@ RSpec.describe 'Bowling::Game' do
 
       it "keeps track of second player's scores" do
         second_player = @game.players.last
-        play [8, 1]
-        expect(second_player.score).to be 9
+        play [0, 0]
+        expect(second_player.score).to be 0
       end
     end
   end
