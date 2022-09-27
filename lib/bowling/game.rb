@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+require 'colorize'
 require_relative 'player'
 require_relative 'frame/frame'
 require_relative 'frame/bonus_frame'
@@ -47,7 +47,7 @@ module Bowling
     end
 
     def scoreboard
-      puts 'These are the scores for the game'
+      puts "\n These are the scores for the game".colorize(:light_green)
       frames = players.first.frames.count
       frame_count = "\n Frame".ljust(12)
       frames.times do |i|
@@ -55,7 +55,9 @@ module Bowling
       end
       puts frame_count
       players.each { |player| print_player(player) }
-      puts "\n Game Over! Thanks for playing"
+      puts "\n Thank you for playing 👍\n".colorize(:green)
+      sleep 0.5
+      puts 'Goodbye, See you next Time 😀'.colorize(:magenta)
       exit
     end
 

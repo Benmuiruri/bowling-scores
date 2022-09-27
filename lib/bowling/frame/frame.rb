@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'colorize'
 
 module Bowling
   class Frame
@@ -16,7 +17,7 @@ module Bowling
 
     def bowl(pins)
       remaining = remaining_pins - pins
-      raise ArgumentError, 'Invalid number of pins' if remaining.negative? || pins > MAX_PINS
+      raise ArgumentError, 'Invalid number of pins'.colorize(:red) if remaining.negative? || pins > MAX_PINS
 
       @remaining_pins = remaining
       bowls << pins

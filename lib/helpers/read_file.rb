@@ -1,23 +1,25 @@
+require 'colorize'
+
 module FileReader
   def self.validate_file(file)
     if File.file?(file)
-      puts 'File with bowling scores exists, reading file to validate score format...'
+      puts "File with bowling scores exists, reading file to validate score format...".colorize(:light_blue)
       sleep 0.5
       validate_score_format(file)
     else
-      puts 'File not found. Please check your file path.'
+      puts "File not found. Please check your file path.".colorize(:red)
       exit
     end
   end
 
   def self.validate_score_format(file)
-    puts 'Validating score format...'
+    puts "Validating score format...".colorize(:light_green)
     sleep 0.5
     File.read(file).each_line do |line|
       if line.match(/(\w+)\t(\w+)/)
         validate_score(line)
       else
-        puts "#{line} is an invalid score format, please check your file and try again."
+        puts "#{line} is an invalid score format, please check your file and try again.".colorize(:red)
         exit
       end
     end
@@ -26,7 +28,7 @@ module FileReader
   def self.validate_score(line)
     scores = line.chomp.split("\t")
     unless scores[1].match(/^([0-9]|10)$|F/)
-      puts "#{scores[1]} is an invalid score. Please check the scores in the file."
+      puts "#{scores[1]} is an invalid score. Please check the scores in the file.".colorize(:red)
       exit
     end
     scores[1].replace '0' if scores[1] == 'F'
