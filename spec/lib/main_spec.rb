@@ -6,7 +6,7 @@ RSpec.describe Main do
   let(:perfect) { FileFixtures.file_fixture('perfect.txt') }
 
   context 'when the file exists' do
-    context 'when validating score format' do
+    context 'with valid score format' do
       it 'expect file content to be valid' do
         expect(FileReader.file_exists?(perfect)).to match(/(\w+)\t(\w+)/)
       end
@@ -21,6 +21,11 @@ RSpec.describe Main do
       it 'expect players to be unique' do
         players = FileReader.get_players(perfect)
         expect(players.uniq).to eq(players)
+      end
+    end
+    context 'when getting frames' do
+      it 'expect frames to be an array' do
+        expect(FileReader.get_frames(perfect)).to be_an(Array)
       end
     end
   end
