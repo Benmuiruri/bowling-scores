@@ -22,7 +22,7 @@ To get a local copy up and running follow these simple example steps.
 - You need Ruby v3+ installed on your machine.
 
 ## Setup
-- Clone the project `https://git.jobsity.com/benkiarie/ruby-challenge.git`
+- Clone the project `https://github.com/Benmuiruri/bowling-scores.git`
 - navigate to the folder `cd ruby-challenge`
 - Install required gems `bundle install`
 
